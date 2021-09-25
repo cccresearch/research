@@ -1,0 +1,191 @@
+\documentclass{article}
+
+
+\usepackage{gitpaper}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}
+
+\usepackage{fontspec}   %加這個就可以設定字體
+\usepackage{xeCJK}       %讓中英文字體分開設置
+\setCJKmainfont{標楷體} %設定中文為系統上的字型，而英文不去更動，使用原TeX字型
+\XeTeXlinebreaklocale "zh"             %這兩行一定要加，中文才能自動換行
+\XeTeXlinebreakskip = 0pt plus 1pt     %這兩行一定要加，中文才能自動換行
+
+\title{使用 \emph{爬山演算法} 自動建構神經網路架構}
+
+
+\author{
+  陳鍾誠 (Chung-Chen Chen)\thanks{Use footnote for providing further
+    information about author (webpage, alternative
+    address)---\emph{not} for acknowledging funding agencies.} \\
+  國立金門大學 資訊工程學系\\
+  \texttt{ccc@nqu.edu.tw} \\
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A method based on Hill Climbing Algorithm is use to build Neural Network model automatically. In our experiment, several simple robust model was construct to recognize handwritten digit on MNIST test base.
+\end{abstract}
+
+
+% keywords can be removed
+\keywords{Neural Network\and Deep Learning\and MNIST}
+
+
+\section{簡介}
+
+近幾年 深度學習技術 讓人工智慧領域有了很大的進展，也吸引到了學術界與產業界共同投入研究。 然而，目前幾乎都還是使用人腦建立模型，而非由程式自動架構出模型。我們認為程式自動建構有很多優點，因次使用手寫數字的 MNIST 資料庫進行了一系列的小型實驗，實驗顯示透過爬山演算法逐步演化建構的模型，並不亞於人腦所建立的模型。而且這樣的算法，在未來還有很多改進空間，有可能建構出人腦所難以建構的神經網路模型。
+
+\section{背景}
+\label{background}
+
+『爬山演算法』是一種相當簡單的區域性搜尋演算法，由於其過程相當類似人類爬山時不斷向上爬的動作，因此稱為爬山演算法。爬山演算法可說是一種啟發式方法，其搜尋策略乃是不斷尋找周邊更好的解答，然後向更好的解答前進。換句話說，就是反覆的搜尋鄰居，一旦發現更好的鄰近點，就向該點前進，直到無法再改進為止。
+
+
+\section{方法}
+
+簡易的『爬山演算法』如下圖所示
+1 所示。
+
+\begin{verbatim}
+Algorithm Hill-Climbing(pi)
+ p = pi // 設定粒子 p 為起始粒子 pi
+ while not isEnd()
+ pn = p.neighbor(step) //選擇粒子 p 的鄰居 pn
+ if pn.fitness()>=p.fitness() //如果更好，就接受
+ p = pn;
+End Algorithm
+\end{verbatim}
+
+\subsection{高度函數如何設計}
+
+Measure Measure Measure Measure Measure Measure Measure Measure Measure Measure Measure Measure Measure Measure 
+
+\begin{equation}
+\xi _{ij}(t)=P(x_{t}=i,x_{t+1}=j|y,v,w;\theta)= {\frac {\alpha _{i}(t)a^{w_t}_{ij}\beta _{j}(t+1)b^{v_{t+1}}_{j}(y_{t+1})}{\sum _{i=1}^{N} \sum _{j=1}^{N} \alpha _{i}(t)a^{w_t}_{ij}\beta _{j}(t+1)b^{v_{t+1}}_{j}(y_{t+1})}}
+\end{equation}
+
+\subsubsection{如何選取好的鄰居？}
+
+任何的參數變動，都可以創造出新的鄰居模型，因此、鄰居的選擇性是無限多的，我們面臨的問題是，該如何從無限多的鄰居當中，選擇一個有可能更好的適當鄰居呢？
+
+在此、我們用了一些啟發式法則如下
+
+\begin{enumerate}  
+\item 加一個新層 
+\item 將一層換成另一層
+\item 調整某層的參數
+\end{enumerate}
+
+\paragraph{Paragraph}
+
+Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph Paragraph 
+
+\section{Experiments}
+\label{sec:others}
+
+Experiments Experiments Experiments Experiments Experiments Experiments Experiments Experiments Experiments Experiments Experiments Experiments Experiments 
+
+ \cite{kour2014real,kour2014fast} and see \cite{hadash2018estimate}.
+
+The documentation for \verb+natbib+ may be found at
+\begin{center}
+  \url{http://mirrors.ctan.org/macros/latex/contrib/natbib/natnotes.pdf}
+\end{center}
+Of note is the command \verb+\citet+, which produces citations
+appropriate for use in inline text.  For example,
+\begin{verbatim}
+   \citet{hasselmo} investigated\dots
+\end{verbatim}
+produces
+\begin{quote}
+  Hasselmo, et al.\ (1995) investigated\dots
+\end{quote}
+
+\begin{center}
+  \url{https://www.ctan.org/pkg/booktabs}
+\end{center}
+
+
+\subsection{Figures}
+\lipsum[10] 
+See Figure \ref{fig:fig1}. Here is how you add footnotes. \footnote{Sample of the first footnote.}
+\lipsum[11] 
+
+\begin{figure}
+  \centering
+  \fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+  \caption{Sample figure caption.}
+  \label{fig:fig1}
+\end{figure}
+
+\subsection{Tables}
+\lipsum[12]
+See awesome Table~\ref{tab:table}.
+
+\begin{table}
+ \caption{Sample table title}
+  \centering
+  \begin{tabular}{lll}
+    \toprule
+    \multicolumn{2}{c}{Part}                   \\
+    \cmidrule(r){1-2}
+    Name     & Description     & Size ($\mu$m) \\
+    \midrule
+    Dendrite & Input terminal  & $\sim$100     \\
+    Axon     & Output terminal & $\sim$10      \\
+    Soma     & Cell body       & up to $10^6$  \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:table}
+\end{table}
+
+\subsection{Lists}
+\begin{itemize}
+\item Lorem ipsum dolor sit amet
+\item consectetur adipiscing elit. 
+\item Aliquam dignissim blandit est, in dictum tortor gravida eget. In ac rutrum magna.
+\end{itemize}
+
+
+\bibliographystyle{unsrt}  
+%\bibliography{references}  %%% Remove comment to use the external .bib file (using bibtex).
+%%% and comment out the ``thebibliography'' section.
+
+
+%%% Comment out this section when you \bibliography{references} is enabled.
+\begin{thebibliography}{1}
+
+\bibitem{kour2014real}
+George Kour and Raid Saabne.
+\newblock Real-time segmentation of on-line handwritten arabic script.
+\newblock In {\em Frontiers in Handwriting Recognition (ICFHR), 2014 14th
+  International Conference on}, pages 417--422. IEEE, 2014.
+
+\bibitem{kour2014fast}
+George Kour and Raid Saabne.
+\newblock Fast classification of handwritten on-line arabic characters.
+\newblock In {\em Soft Computing and Pattern Recognition (SoCPaR), 2014 6th
+  International Conference of}, pages 312--318. IEEE, 2014.
+
+\bibitem{hadash2018estimate}
+Guy Hadash, Einat Kermany, Boaz Carmeli, Ofer Lavi, George Kour, and Alon
+  Jacovi.
+\newblock Estimate and replace: A novel approach to integrating deep neural
+  networks with existing applications.
+\newblock {\em arXiv preprint arXiv:1804.09028}, 2018.
+
+\end{thebibliography}
+
+
+\end{document}
